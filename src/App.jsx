@@ -15,11 +15,28 @@ const initialBoard = [
 ];
 function App() {
   const [board, setBoard] = useState(initialBoard);
-  const handleCellChange = () => {};
+
+  const handleCellChange = (row, col, value) => {
+    const newBoard = [...board];
+    newBoard[row][col] = parseInt(value) || 0;
+    setBoard(newBoard);
+  };
+
+  const handleCheckSolution = () => {
+    if (isValidSudoku(board)) {
+      alert("Congrats! The solution is correct!");
+    } else {
+      alert("There are mistakes in the solution.");
+    }
+  };
+
+  const isValidSudoku = () => {};
+
   return (
     <div className="app">
       <h1>Sudoku Game</h1>
       <Board board={board} onCellChange={handleCellChange} />
+      <button onClick={handleCheckSolution}>Check Solution</button>
     </div>
   );
 }
